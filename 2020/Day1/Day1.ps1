@@ -29,7 +29,7 @@ Of course, your expense report is much larger. Find the two entries that sum to 
 nullptr
 #>
 
-$expenseReport = Get-Content -Path $PSScriptRoot\input.txt
+$expenseReport = Get-Content -Path $PSScriptRoot\..\inputs\inputday1.txt
 
 function challenge1version1 {
     foreach ($addend1 in $expenseReport) {
@@ -66,5 +66,3 @@ function challenge1version2 {
 
 
 challenge1version2
-
-challenge2version1
