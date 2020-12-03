@@ -31,17 +31,16 @@ nullptr
 
 $expenseReport = Get-Content -Path $PSScriptRoot\..\inputs\inputday1.txt
 
-function challenge1version1 {
+function challenge1version1($expenseReport) {
     foreach ($addend1 in $expenseReport) {
         foreach ($addend2 in $expenseReport) {
-            $sum = [int]$addend2 + [int]$addend1
-            if ($sum -eq 2020) {
-                Write-Output "Sum equals 2020... multiplying"
-                $multiply = [int]$addend2 * [int]$addend1
-                Write-Output ("{0}" -f $multiply) 
+            $sumOfAdd = [int]$addend2 + [int]$addend1
+            if ($sumOfAdd -eq 2020) {
+                $sumOfMultiply = [int]$addend2 * [int]$addend1
             }
         }
     }
+    return $sumOfMultiply
 }
 
 function challenge1version2 {
@@ -60,9 +59,18 @@ function challenge1version2 {
 }
 
 
+function challenge2version1($expenseReport){
+    foreach ($addend1 in $expenseReport) {
+        foreach ($addend2 in $expenseReport) {
+            foreach ($addend3 in $expenseReport) {
+                $sumOfAdd = [int]$addend1 + [int]$addend2 + [int]$addend3
+                if($sumOfAdd -eq 2020){
+                    $sumOfMultiplication = [int]$addend1 * [int]$addend2 * [int]$addend3
+                }
+            }
+        }
+    }
+    return $sumOfMultiplication
+}
 
 
-
-
-
-challenge1version2
