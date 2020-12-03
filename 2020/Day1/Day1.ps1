@@ -29,15 +29,42 @@ Of course, your expense report is much larger. Find the two entries that sum to 
 nullptr
 #>
 
-
 $expenseReport = Get-Content -Path $PSScriptRoot\input.txt
-foreach ($addend1 in $expenseReport) {
-    foreach ($addend2 in $expenseReport) {
-        $add = [int]$addend2 + [int]$addend1
-        if($add -eq 2020) {
-            Write-Output "Sum equals 2020... multiplying"
-            $multiply = [int]$addend2 * [int]$addend1
-            Write-Output ("{0}" -f $multiply) 
+
+function challenge1version1 {
+    foreach ($addend1 in $expenseReport) {
+        foreach ($addend2 in $expenseReport) {
+            $sum = [int]$addend2 + [int]$addend1
+            if ($sum -eq 2020) {
+                Write-Output "Sum equals 2020... multiplying"
+                $multiply = [int]$addend2 * [int]$addend1
+                Write-Output ("{0}" -f $multiply) 
+            }
         }
     }
 }
+
+function challenge1version2 {
+    foreach ($item in $expenseReport) {
+        Write-Output ("Working on {0}" -f $item)
+        if([int]$item -gt 2020){
+            Write-Output ("Number {0} is greater than 2020.. skipping" -f $item)
+        } else {
+            $remainder = 2020 - [int]$item
+            Write-Output ("remainder {0}" -f $remainder)
+            if($expenseReport -contains $remainder){
+                return [int]$item * $remainder
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+challenge1version2
+
+challenge2version1
