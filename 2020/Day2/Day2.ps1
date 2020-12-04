@@ -40,7 +40,7 @@ nullptr
 
 $passwordPolicies = Get-Content -Path $PSScriptRoot\..\inputs\inputday2.txt
 
-function challenge1version1($fileInput) {
+function part1($fileInput) {
     foreach ($passwordPolicy in $fileInput) {
         $parsePasswordFile = $passwordPolicy.Split(" ")
         $passwordRule = $parsePasswordFile[0].split("-")
@@ -59,7 +59,7 @@ function challenge1version1($fileInput) {
 }
 
 
-function challenge2version1($fileInput) {
+function part2($fileInput) {
     foreach ($passwordPolicy in $fileInput) {
         $parsePasswordFile = $passwordPolicy.Split(" ")
         $passwordRule = $parsePasswordFile[0].split("-")
@@ -75,7 +75,3 @@ function challenge2version1($fileInput) {
     }
     return $count
 }
-
-#challenge2version1 -fileInput $passwordPolicies
-
-#challenge1version1 -fileInput $passwordPolicies

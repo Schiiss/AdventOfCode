@@ -78,7 +78,7 @@ $slope = @{
     right = 3
 }
 
-function Get-NextPosition {
+function Get-SlopePosition {
     param (
         $position,
         $slope,
@@ -91,7 +91,7 @@ function Get-NextPosition {
     }
 }
 
-function challenge1version1($fileInput, $slope) {
+function part1($fileInput, $slope) {
     $position = @{
         x = 1
         y = 1
@@ -104,20 +104,18 @@ function challenge1version1($fileInput, $slope) {
             if ($line[$position.x - 1] -eq '#') {
                 $trees++
             }
-            $position = Get-NextPosition -position $position -width $line.length -slope $slope
+            $position = Get-SlopePosition -position $position -width $line.length -slope $slope
         }
         $linenumber++
     }
     $trees
 }
 
-function challenge2version1($fileInput) {
+function part2($fileInput) {
     $total = 1
     $slopes = @(@{down = 1; right = 1 }, @{down = 1; right = 3 }, @{down = 1; right = 5 }, @{down = 1; right = 7 }, @{down = 2; right = 1 })
     foreach ($slope in $slopes) {
-        $total = $total * (challenge1version1 -fileInput $fileInput -slope $slope)
+        $total = $total * (part1 -fileInput $fileInput -slope $slope)
     }
     $total
 }
-
-challenge2version1 -fileInput $treeCoordinates 

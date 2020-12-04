@@ -38,7 +38,7 @@ nullptr
 
 $expenseReport = Get-Content -Path $PSScriptRoot\..\inputs\inputday1.txt
 
-function challenge1version1($expenseReport) {
+function part1($expenseReport) {
     foreach ($addend1 in $expenseReport) {
         foreach ($addend2 in $expenseReport) {
             $sumOfAdd = [int]$addend2 + [int]$addend1
@@ -50,23 +50,7 @@ function challenge1version1($expenseReport) {
     return $sumOfMultiply
 }
 
-function challenge1version2 {
-    foreach ($item in $expenseReport) {
-        Write-Output ("Working on {0}" -f $item)
-        if([int]$item -gt 2020){
-            Write-Output ("Number {0} is greater than 2020.. skipping" -f $item)
-        } else {
-            $remainder = 2020 - [int]$item
-            Write-Output ("remainder {0}" -f $remainder)
-            if($expenseReport -contains $remainder){
-                return [int]$item * $remainder
-            }
-        }
-    }
-}
-
-
-function challenge2version1($expenseReport){
+function part2($expenseReport){
     foreach ($addend1 in $expenseReport) {
         foreach ($addend2 in $expenseReport) {
             foreach ($addend3 in $expenseReport) {
