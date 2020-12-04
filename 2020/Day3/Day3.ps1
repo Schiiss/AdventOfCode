@@ -78,17 +78,12 @@ $slope = @{
     right = 3
 }
 
-function Get-SlopePosition {
-    param (
-        $position,
-        $slope,
-        $width
-    )
-
-    @{
+function getSlopePosition($position, $slop, $width) {
+    $coordinates = @{
         y = $position.y + $slope.down
         x = ($position.x + $slope.right -lt $width) ? $position.x + $slope.right : $position.x + $slope.right - $width 
     }
+    return $coordinates
 }
 
 function part1($fileInput, $slope) {
@@ -100,15 +95,13 @@ function part1($fileInput, $slope) {
     $trees = 0
     $linenumber = 1
     foreach ($line in $fileInput) {
-        if ($position.y -eq $linenumber) {
-            if ($line[$position.x - 1] -eq '#') {
-                $trees++
-            }
-            $position = Get-SlopePosition -position $position -width $line.length -slope $slope
+        if ($line[$position.x - 1] -eq '#') {
+            $trees++
         }
+        $position = getSlopePosition -position $position -width $line.length -slope $slope
         $linenumber++
     }
-    $trees
+    return $trees
 }
 
 function part2($fileInput) {
@@ -117,5 +110,12 @@ function part2($fileInput) {
     foreach ($slope in $slopes) {
         $total = $total * (part1 -fileInput $fileInput -slope $slope)
     }
-    $total
+    return $total
 }
+
+
+$part1Output = part1 -fileInput $treeCoordinates -slope $slope
+Write-Host -ForegroundColor Green ("Anwser: {0}" -f $part1Output)
+
+$part2Output = part2 -fileInput $treeCoordinates
+Write-Host -ForegroundColor Green ("Anwser: {0}" -f $part2Output)
