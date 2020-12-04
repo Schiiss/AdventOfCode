@@ -76,6 +76,6 @@ function challenge2version1($fileInput) {
     return $count
 }
 
-challenge2version1 -fileInput $passwordPolicies
+#challenge2version1 -fileInput $passwordPolicies
 
 #challenge1version1 -fileInput $passwordPolicies
